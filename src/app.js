@@ -8,7 +8,7 @@ function showComponent(componentName) {
     // Find and activate the clicked nav item
     const navButtons = document.querySelectorAll('.nav-item');
     navButtons.forEach((btn, index) => {
-        const componentNames = ['dashboard', 'tasklist', 'board', 'calendar', 'settings', 'profile'];
+        const componentNames = ['dashboard', 'tasklist', 'board', 'calendar', 'settings', 'profile', 'notifications'];
         if (componentNames[index] === componentName) {
             btn.classList.add('active', 'bg-primary-50', 'text-primary-600');
         }
@@ -35,6 +35,9 @@ function showComponent(componentName) {
             break;
         case 'profile':
             container.innerHTML = getProfileComponent();
+            break;
+        case 'notifications':
+            container.innerHTML = getNotificationsComponent();
             break;
         default:
             container.innerHTML = getDashboardComponent();
