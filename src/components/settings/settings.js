@@ -1,120 +1,117 @@
-function getSettingsComponent() {
-    return `
-        <div class="space-y-6">
-            <div class="flex justify-between items-center">
-                <h1 class="text-3xl font-bold text-gray-800">Cài đặt</h1>
-            </div>
+import settingsHtml from './settings.html?raw';
+import './settings.css';
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Settings Menu -->
-                <div class="lg:col-span-1">
-                    <div class="card space-y-2">
-                        <button class="w-full text-left px-4 py-3 rounded-lg bg-primary-50 text-primary-600 font-medium">
-                            Tài khoản
-                        </button>
-                        <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 text-gray-700">
-                            Thông báo
-                        </button>
-                        <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 text-gray-700">
-                            Giao diện
-                        </button>
-                        <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 text-gray-700">
-                            Bảo mật
-                        </button>
-                        <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 text-gray-700">
-                            Tích hợp
-                        </button>
-                    </div>
-                </div>
+// Dữ liệu mặc định
+const defaultSettings = {
+    name: "Nguyễn Văn A",
+    email: "nguyenvana@example.com",
+    phone: "0987 654 321",
+    location: "Hà Nội, Việt Nam",
+    bio: "Lập trình viên Frontend đam mê công nghệ.",
+    notifications: {
+        email: true,
+        deadline: true,
+        message: false
+    },
+    language: "vi",
+    theme: "light"
+};
 
-                <!-- Settings Content -->
-                <div class="lg:col-span-2 space-y-6">
-                    <!-- Account Settings -->
-                    <div class="card">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-6">Thông tin tài khoản</h2>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Họ và tên</label>
-                                <input type="text" value="Nguyễn Văn A" class="input-field">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                <input type="email" value="nguyenvana@example.com" class="input-field">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Số điện thoại</label>
-                                <input type="tel" value="0123456789" class="input-field">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Vị trí</label>
-                                <input type="text" value="Hà Nội, Việt Nam" class="input-field">
-                            </div>
-                            <div class="flex justify-end">
-                                <button class="btn-primary">Lưu thay đổi</button>
-                            </div>
-                        </div>
-                    </div>
+function getSettingsData() {
+    const profileData = localStorage.getItem('userProfile');
+    let baseData = defaultSettings;
+    
+    if (profileData) {
+        const parsedProfile = JSON.parse(profileData);
+        baseData = { ...baseData, ...parsedProfile }; // Ghi đè thông tin từ Profile sang
+    }
 
-                    <!-- Notification Settings -->
-                    <div class="card">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-6">Cài đặt thông báo</h2>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <h3 class="font-medium text-gray-800">Email thông báo</h3>
-                                    <p class="text-sm text-gray-600">Nhận thông báo qua email</p>
-                                </div>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" checked class="sr-only peer">
-                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <h3 class="font-medium text-gray-800">Thông báo deadline</h3>
-                                    <p class="text-sm text-gray-600">Nhắc nhở khi sắp đến deadline</p>
-                                </div>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" checked class="sr-only peer">
-                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <h3 class="font-medium text-gray-800">Thông báo nhận xét</h3>
-                                    <p class="text-sm text-gray-600">Thông báo khi có người nhận xét</p>
-                                </div>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" class="sr-only peer">
-                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+    const storedSettings = localStorage.getItem('userSettings');
+    return storedSettings ? { ...baseData, ...JSON.parse(storedSettings) } : baseData;
+}
 
-                    <!-- Theme Settings -->
-                    <div class="card">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-6">Giao diện</h2>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Chủ đề</label>
-                                <select class="input-field">
-                                    <option>Sáng</option>
-                                    <option>Tối</option>
-                                    <option>Tự động</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Ngôn ngữ</label>
-                                <select class="input-field">
-                                    <option>Tiếng Việt</option>
-                                    <option>English</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+window.initSettingsPage = function() {
+    const data = getSettingsData();
+    
+    setValue('set-name', data.name);
+    setValue('set-email', data.email);
+    setValue('set-phone', data.phone);
+    setValue('set-location', data.location);
+    setValue('set-bio', data.bio);
+    setValue('set-language', data.language);
+
+    setChecked('notify-email', data.notifications?.email);
+    setChecked('notify-deadline', data.notifications?.deadline);
+    setChecked('notify-msg', data.notifications?.message);
+    
+    highlightTheme(data.theme);
+}
+
+// Hàm chuyển Tab
+window.switchTab = function(tabName) {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active-tab', 'bg-primary-50', 'text-primary-700', 'border-l-4', 'border-primary-600');
+        btn.classList.add('text-gray-600');
+    });
+
+    const activeBtn = document.getElementById(`btn-tab-${tabName}`);
+    if (activeBtn) {
+        activeBtn.classList.add('active-tab');
+        activeBtn.classList.remove('text-gray-600');
+    }
+
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+    });
+
+    const activeContent = document.getElementById(`tab-${tabName}`);
+    if (activeContent) {
+        activeContent.classList.remove('hidden');
+    }
+}
+
+// Hàm lưu cài đặt
+window.saveSettings = function() {
+    const newSettings = {
+        name: getValue('set-name'),
+        email: getValue('set-email'),
+        phone: getValue('set-phone'),
+        location: getValue('set-location'),
+        bio: getValue('set-bio'),
+        language: getValue('set-language'),
+        notifications: {
+            email: getChecked('notify-email'),
+            deadline: getChecked('notify-deadline'),
+            message: getChecked('notify-msg')
+        },
+        theme: "light"
+    };
+
+    localStorage.setItem('userSettings', JSON.stringify(newSettings));
+    
+    const currentProfile = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : {};
+    const updatedProfile = { ...currentProfile, ...newSettings };
+    localStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+
+    alert("✅ Đã lưu cài đặt hệ thống thành công!");
+}
+
+// Helper functions
+function setValue(id, val) { const el = document.getElementById(id); if(el) el.value = val || ''; }
+function getValue(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+function setChecked(id, val) { const el = document.getElementById(id); if(el) el.checked = !!val; }
+function getChecked(id) { const el = document.getElementById(id); return el ? el.checked : false; }
+
+function highlightTheme(theme) {
+    // Logic highlight border cho theme (có thể bổ sung sau)
+}
+window.selectTheme = function(theme) {
+    alert(`Đã chọn giao diện: ${theme}. (Tính năng đang phát triển)`);
+}
+
+window.getSettingsComponent = function() {
+    setTimeout(() => {
+        if (window.initSettingsPage) window.initSettingsPage();
+    }, 0);
+    return settingsHtml;
 }

@@ -1,0 +1,260 @@
+<div class="space-y-6 animate-fade-in settings-container">
+    <div
+        class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Cài đặt hệ thống</h1>
+            <p class="text-gray-500 mt-1">Quản lý tùy chọn cá nhân và cấu hình
+                ứng dụng</p>
+        </div>
+        <button onclick="saveSettings()"
+            class="btn-primary flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+            </svg>
+            <span>Lưu thay đổi</span>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div class="lg:col-span-1">
+            <div class="card p-2 space-y-1 sticky top-6">
+                <button onclick="switchTab('account')" id="btn-tab-account"
+                    class="tab-btn w-full text-left px-4 py-3 rounded-lg font-medium flex items-center space-x-3 transition-all active-tab">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24"><path stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <span>Tài khoản</span>
+                </button>
+                <button onclick="switchTab('notifications')"
+                    id="btn-tab-notifications"
+                    class="tab-btn w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium flex items-center space-x-3 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24"><path stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <span>Thông báo</span>
+                </button>
+                <button onclick="switchTab('interface')" id="btn-tab-interface"
+                    class="tab-btn w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium flex items-center space-x-3 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24"><path stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"
+                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <span>Giao diện</span>
+                </button>
+                <button onclick="switchTab('security')" id="btn-tab-security"
+                    class="tab-btn w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium flex items-center space-x-3 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24"><path stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <span>Bảo mật</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-6">
+
+            <div id="tab-account"
+                class="tab-content block animate-fade-in-right">
+                <div class="card mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-1">Thông tin
+                        chung</h2>
+                    <p class="text-sm text-gray-500 mb-6">Cập nhật thông tin cá
+                        nhân của bạn</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Ảnh
+                                đại diện</label>
+                            <div class="flex items-center space-x-4">
+                                <div
+                                    class="h-16 w-16 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 text-xl font-bold border-2 border-white shadow">NA</div>
+                                <button class="btn-secondary text-sm">Thay đổi
+                                    ảnh</button>
+                                <button
+                                    class="text-red-500 text-sm hover:underline">Xóa</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Họ
+                                và tên</label>
+                            <input type="text" id="set-name"
+                                class="input-modern" placeholder="Nhập họ tên">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="set-email"
+                                class="input-modern bg-gray-50" readonly>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Số
+                                điện thoại</label>
+                            <input type="tel" id="set-phone"
+                                class="input-modern" placeholder="Nhập SĐT">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Vị
+                                trí</label>
+                            <input type="text" id="set-location"
+                                class="input-modern"
+                                placeholder="Thành phố, Quốc gia">
+                        </div>
+                        <div class="col-span-2">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Giới
+                                thiệu ngắn</label>
+                            <textarea id="set-bio" rows="3" class="input-modern"
+                                placeholder="Mô tả ngắn về bạn"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-notifications"
+                class="tab-content hidden animate-fade-in-right">
+                <div class="card">
+                    <h2 class="text-xl font-bold text-gray-800 mb-1">Cài đặt
+                        thông báo</h2>
+                    <p class="text-sm text-gray-500 mb-6">Chọn cách bạn muốn
+                        nhận thông báo</p>
+
+                    <div class="space-y-6 divide-y divide-gray-100">
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <h3 class="font-medium text-gray-800">Email
+                                    thông báo</h3>
+                                <p class="text-sm text-gray-500">Nhận email khi
+                                    có cập nhật quan trọng</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notify-email" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between pt-4">
+                            <div>
+                                <h3 class="font-medium text-gray-800">Thông báo
+                                    deadline</h3>
+                                <p class="text-sm text-gray-500">Nhắc nhở khi
+                                    công việc sắp hết hạn</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notify-deadline"
+                                    checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between pt-4">
+                            <div>
+                                <h3 class="font-medium text-gray-800">Tin nhắn &
+                                    Bình luận</h3>
+                                <p class="text-sm text-gray-500">Thông báo khi
+                                    có người nhắc đến bạn</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notify-msg">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-interface"
+                class="tab-content hidden animate-fade-in-right">
+                <div class="card">
+                    <h2 class="text-xl font-bold text-gray-800 mb-1">Tùy chỉnh
+                        giao diện</h2>
+                    <p class="text-sm text-gray-500 mb-6">Cá nhân hóa trải
+                        nghiệm sử dụng</p>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Chủ
+                                đề (Theme)</label>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div onclick="selectTheme('light')"
+                                    class="theme-option cursor-pointer border-2 border-primary-500 rounded-lg p-2 hover:bg-gray-50 transition-colors">
+                                    <div
+                                        class="h-20 bg-gray-100 rounded mb-2 border border-gray-200"></div>
+                                    <p class="text-center text-sm font-medium">Sáng</p>
+                                </div>
+                                <div onclick="selectTheme('dark')"
+                                    class="theme-option cursor-pointer border-2 border-transparent hover:border-gray-300 rounded-lg p-2 transition-colors">
+                                    <div class="h-20 bg-gray-800 rounded mb-2"></div>
+                                    <p class="text-center text-sm font-medium">Tối</p>
+                                </div>
+                                <div onclick="selectTheme('system')"
+                                    class="theme-option cursor-pointer border-2 border-transparent hover:border-gray-300 rounded-lg p-2 transition-colors">
+                                    <div
+                                        class="h-20 bg-gradient-to-br from-gray-100 to-gray-800 rounded mb-2 border border-gray-200"></div>
+                                    <p class="text-center text-sm font-medium">Tự
+                                        động</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Ngôn
+                                ngữ</label>
+                            <select id="set-language"
+                                class="input-modern bg-white">
+                                <option value="vi">Tiếng Việt</option>
+                                <option value="en">English (US)</option>
+                                <option value="jp">Japanese</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-security"
+                class="tab-content hidden animate-fade-in-right">
+                <div class="card">
+                    <h2 class="text-xl font-bold text-gray-800 mb-1">Bảo mật</h2>
+                    <p class="text-sm text-gray-500 mb-6">Quản lý mật khẩu và
+                        bảo mật tài khoản</p>
+
+                    <div class="space-y-4 max-w-md">
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Mật
+                                khẩu hiện tại</label>
+                            <input type="password" class="input-modern"
+                                placeholder="••••••••">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Mật
+                                khẩu mới</label>
+                            <input type="password" class="input-modern"
+                                placeholder="••••••••">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Xác
+                                nhận mật khẩu mới</label>
+                            <input type="password" class="input-modern"
+                                placeholder="••••••••">
+                        </div>
+                        <div class="pt-2">
+                            <button class="btn-secondary w-full">Đổi mật khẩu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
