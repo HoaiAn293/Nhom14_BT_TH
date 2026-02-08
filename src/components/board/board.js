@@ -25,6 +25,7 @@ function getBoardComponent() {
                                     <h4 class="font-medium text-gray-800">Thiết kế logo</h4>
                                     <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Cao</span>
                                 </div>
+                                
                                 <p class="text-sm text-gray-600 mb-3">Tạo logo mới cho dự án</p>
                                 <div class="flex items-center justify-between text-xs text-gray-500">
                                     <span>📅 18/12</span>
