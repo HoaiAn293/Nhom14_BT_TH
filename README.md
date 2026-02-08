@@ -2,10 +2,6 @@
 
 Dự án giao diện quản lý công việc dựa trên ClickUp, sử dụng HTML, Tailwind CSS và JavaScript.
 
-## Giới thiệu
-
-Dự án này là một ứng dụng quản lý công việc (Task Manager) được phát triển dựa trên giao diện và cách hoạt động của ClickUp. Mọi người có thể tham khảo ClickUp để hiểu rõ hơn về cách ứng dụng hoạt động.
-
 ## Công nghệ sử dụng
 
 - **HTML5**
@@ -112,12 +108,9 @@ git checkout dev_dashboard
 ### Bước 2: Chọn component để làm việc
 
 - Đã có sẵn **6 nhánh** tương ứng với 6 components:
-  - `dev_dashboard`
-  - `dev_tasklist`
-  - `dev_board`
-  - `dev_calendar`
-  - `dev_settings`
-  - `dev_profile`
+  - `dev_kiendat`
+  - `dev_thanhdat`
+  - `dev_quoctuan`,..
 
 - Mỗi người chọn **1 folder trong thư mục `components/`** để code
 - **Chỉ code trong folder đó**, không chỉnh sửa các file khác
@@ -144,12 +137,6 @@ git add .
 git commit -m "Thêm giao diện dashboard với thống kê công việc"
 git push origin dev_dashboard
 ```
-
-**Lưu ý:** 
-- Commit message phải mô tả rõ nội dung đã sửa
-- Push đúng nhánh của bạn, không push nhầm nhánh
-- Mỗi thành viên cần có **ít nhất 2 commit hợp lệ**
-
 ### Bước 4: Tạo Pull/Merge Request và thông báo
 
 Sau khi push code lên nhánh `dev_*`:
@@ -187,10 +174,4 @@ npm install
 
 ```bash
 npm run dev
-```
-
-### Build cho production
-
-```bash
-npm run build
 ```
